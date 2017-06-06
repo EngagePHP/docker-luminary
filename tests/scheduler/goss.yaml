@@ -1,0 +1,60 @@
+file:
+  # Check that a cron.conf file exists
+  /var/www/cron.conf:
+    exists: true
+    filetype: file
+
+  # Check that Lumen was installed
+  # and the index.php is available
+  /var/www/public/index.php:
+    exists: true
+    mode: "0644"
+    owner: nginx
+    group: nginx
+    filetype: file
+
+  # Check that the file permissions
+  # and ownership was updated
+  /var/www/storage:
+    exists: true
+    mode: "0777"
+    owner: nginx
+    group: nginx
+    filetype: directory
+
+  # Check that environment variables
+  # have been added
+
+  /root/.bashrc:
+    exists: true
+    filetype: file
+    contains:
+    - "if [ -f /opt/envars.sh ]; then source /opt/envars.sh; fi"
+
+  /opt/envars.sh:
+    exists: true
+    filetype: file
+    contains:
+    - "export CACHE_DRIVER='array'"
+    - "export SESSION_DRIVER='cookie'"
+    - "export QUEUE_DRIVER='array'"
+
+  /var/www/.env:
+    exists: true
+    filetype: file
+    contains:
+    - "CACHE_DRIVER='array'"
+    - "SESSION_DRIVER='cookie'"
+    - "QUEUE_DRIVER='array'"
+
+  /etc/php7/php-fpm.d/envars.conf:
+    exists: true
+    filetype: file
+    contains:
+    - "env[CACHE_DRIVER] = 'array'"
+    - "env[SESSION_DRIVER] = 'cookie'"
+    - "env[QUEUE_DRIVER] = 'array'"
+
+process:
+  crond:
+    running: true

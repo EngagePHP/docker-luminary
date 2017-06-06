@@ -1,0 +1,23 @@
+#!/bin/bash
+
+# Create the cron log file
+mkdir -p /var/log/cron
+
+# Make sure there is a empty line @ EOF
+echo '' >> ${file}
+
+file=/var/www/cron.conf
+
+if [ -f ${file} ]; then
+   # Set the cron to run
+   crontab ${file}
+fi
+
+# Start the cron service
+crond
+
+# Disable default services
+rm -rf /etc/services.d/nginx
+rm -rf /etc/services.d/php7
+
+/init
