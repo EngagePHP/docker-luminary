@@ -1,4 +1,4 @@
-FROM mcuyar/docker-luminary:latest
+FROM engageops/docker-luminary:latest
 MAINTAINER Matthew Cuyar <matt@enctypeapparel.com>
 
 ##/
