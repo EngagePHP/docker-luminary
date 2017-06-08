@@ -14,3 +14,5 @@ RUN cd /var \
  # Copy files
  #/
 COPY rootfs /
+
+EXPOSE 8000

@@ -13,3 +13,5 @@ RUN cd /var/www \
  # Copy files
  #/
 COPY rootfs /
+
+EXPOSE 8000

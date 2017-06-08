@@ -1,3 +1,12 @@
+# Test that the exposed port 8000
+# is open and listening
+port:
+  tcp:8000:
+    listening: true
+    ip:
+    - 0.0.0.0
+
+# Test for files
 file:
   # Check that Lumen was installed
   # and the index.php is available
@@ -64,7 +73,7 @@ file:
 
 # Test the home page
 http:
-  http://localhost:
+  http://localhost:8000:
     status: 200
     allow-insecure: false
     no-follow-redirects: false
