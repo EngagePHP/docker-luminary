@@ -1,5 +1,16 @@
 #!/bin/bash
 
+function ignore() {
+    local ignore=(HOME HOSTNAME PATH S6_VERSION no_proxy)
+    local check=${1}
+
+    if [[ ${ignore[*]} =~ "$check" ]]; then
+        return 0;
+    fi
+
+    return 1;
+}
+
 #----------------------------------------------------------
 # Add the container environment variables to bash sessions
 #----------------------------------------------------------
@@ -68,9 +79,11 @@ echo "Generating Environment Variables"
 cd /var/run/s6/container_environment
 
 for f in *; do
-  if [ -n "$( cat $f )" ]; then
-    name=${f}
-    value=`cat ${f}`
+
+  name=${f}
+  value=`cat ${f}`
+
+  if ! ignore "${name}" && [ -n "${value}" ]; then
     echo "export ${name}='${value}'" >> ${source}
     echo "env[${name}] = '${value}'" >> ${conf}
     echo "env[${name}] = '${value}'" >> ${ini}
