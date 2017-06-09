@@ -1,11 +1,12 @@
-FROM engageops/docker-luminary:latest
+FROM mcuyar/docker-alpine-nginx-php7:latest
 MAINTAINER Matthew Cuyar <matt@enctypeapparel.com>
 
 ##/
  # Install Lumen CLI
  #/
-RUN cd /var/www \
-    && composer install \
+RUN cd /var \
+    && rm -rf www \
+    && composer create-project --prefer-dist --stability dev engage-php/luminary www \
     && composer clearcache \
     && rm -rf www/composer.lock
 
