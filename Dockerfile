@@ -11,6 +11,11 @@ RUN cd /var \
     && rm -rf www/composer.lock
 
 ##/
+ # Add composer vendor/bin to path
+ #/
+ENV PATH="/var/www/vendor/bin:${PATH}"
+
+##/
  # Copy files
  #/
 COPY rootfs /
