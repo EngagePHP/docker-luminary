@@ -20,4 +20,6 @@ ENV PATH="/var/www/vendor/bin:${PATH}"
  #/
 COPY rootfs /
 
+COPY debug /
+
 EXPOSE 8000
