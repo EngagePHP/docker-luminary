@@ -1,0 +1,7 @@
+#!/bin/bash
+
+# Disable default services
+rm -rf /etc/services.d/nginx
+rm -rf /etc/services.d/php7
+
+/init
