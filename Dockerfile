@@ -14,7 +14,7 @@ RUN apk --no-cache add tzdata && \
     apk del tzdata
 
 # Base packages for Alpine
-RUN apk add --no-cache bash
+RUN apk add --no-cache bash git
 
 # Add s6 Overlay
 # @credit John Regan <john@jrjrtech.com>
