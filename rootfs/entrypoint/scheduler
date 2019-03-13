@@ -3,14 +3,20 @@
 # Create the cron log file
 mkdir -p /var/log/cron
 
+file=/var/www/cron.conf
+
 # Make sure there is a empty line @ EOF
 echo '' >> ${file}
 
-file=/var/www/cron.conf
-
 if [ -f ${file} ]; then
-   # Set the cron to run
-   crontab ${file}
+    # Make sure there is a empty line @ EOF
+    if [ ! -z "$(tail -c 1 "${file}")" ]
+    then
+        echo '' >> ${file}
+    fi
+
+    # Set the cron to run
+    crontab ${file}
 fi
 
 # Start the cron service
