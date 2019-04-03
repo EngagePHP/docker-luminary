@@ -14,7 +14,7 @@ php /var/www/artisan queue:listen --sleep=5
 EOF
 
 # Disable default services
-rm -rf /etc/service.d/nginx
+# rm -rf /etc/service.d/nginx
 rm -rf /etc/services.d/php7
 
 /init
