@@ -84,7 +84,8 @@ ENTRYPOINT [ "/init" ]
 # @target: Dev Build
 #----------------------------------------------------
 # Install the project
-RUN composer create-project --prefer-dist --stability dev engage-php/luminary:dev-develop . \
+RUN composer self-update 1.10.16\
+    && composer create-project --prefer-dist --stability dev engage-php/luminary:dev-develop . \
     && composer clearcache \
     && rm -rf composer.lock
 
